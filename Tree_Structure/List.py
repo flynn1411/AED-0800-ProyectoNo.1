@@ -1,5 +1,13 @@
 #-*-coding: utf-8-*-
 """
+    Nodo
+"""
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+        
+"""
     Clases de los valores de un nodo cualquiera
 """
 
@@ -13,14 +21,6 @@ class Directory:
 class File:
     def __init__(self, name):
         self.name = name
-
-"""
-    Nodo
-"""
-class Node:
-    def __init__(self, value):
-        self.value = value
-        self.next = None
 
 """
     Lista enlazada y sus metódos.
