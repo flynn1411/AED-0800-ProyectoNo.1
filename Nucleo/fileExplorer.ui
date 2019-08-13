@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>FileExplorer</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>svg/app_finder_bright_icon.pgm</normaloff>svg/app_finder_bright_icon.pgm</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">color: rgb(238, 238, 236);
 background-color: rgb(243, 243, 243);</string>

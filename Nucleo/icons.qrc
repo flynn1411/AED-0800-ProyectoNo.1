@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="svgs">
+    <file>svg/app_finder_bright_icon.pgm</file>
     <file>svg/accept.svg</file>
     <file>svg/close.svg</file>
     <file>svg/delete.svg</file>

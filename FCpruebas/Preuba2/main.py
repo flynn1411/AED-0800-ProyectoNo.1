@@ -8,10 +8,10 @@ class Life2Coding(QDialog):
         super(Life2Coding,self).__init__()
         loadUi('life2coding.ui',self)
         self.setWindowTitle('Life2Coding PyQt5 Gui')
-        self.pushButton.cliced.connect(self.on_pushButton_clicked)
+        self.pushButton.clicked.connect(self.on_pushButton_clicked)
     @pyqtSlot()
     def on_pushButton_clicked(self):
-        self.labell.setText('Welcome:'+self.lineEdit.text())
+        self.label.setText('Welcome:'+self.lineEdit.text())
 
 app=QApplication(sys.argv)
 widget=Life2Coding()
