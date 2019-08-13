@@ -95,5 +95,22 @@
  <resources>
   <include location="icons.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>AddDirectoryDialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>370</x>
+     <y>30</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>196</x>
+     <y>30</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

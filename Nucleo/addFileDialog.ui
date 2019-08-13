@@ -112,21 +112,5 @@
     </hint>
    </hints>
   </connection>
-  <connection>
-   <sender>addName</sender>
-   <signal>clicked()</signal>
-   <receiver>nameInput</receiver>
-   <slot>copy()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>320</x>
-     <y>30</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>145</x>
-     <y>32</y>
-    </hint>
-   </hints>
-  </connection>
  </connections>
 </ui>

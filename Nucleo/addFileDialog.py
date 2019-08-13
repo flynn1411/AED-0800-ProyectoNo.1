@@ -45,7 +45,6 @@ class Ui_AddFileDialog(object):
 
         self.retranslateUi(AddFileDialog)
         self.cancel.clicked.connect(AddFileDialog.close)
-        self.addName.clicked.connect(self.nameInput.copy)
         QtCore.QMetaObject.connectSlotsByName(AddFileDialog)
 
     def retranslateUi(self, AddFileDialog):

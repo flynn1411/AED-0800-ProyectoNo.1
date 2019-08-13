@@ -44,6 +44,7 @@ class Ui_AddDirectoryDialog(object):
         self.nameInput.setObjectName("nameInput")
 
         self.retranslateUi(AddDirectoryDialog)
+        self.cancel.clicked.connect(AddDirectoryDialog.close)
         QtCore.QMetaObject.connectSlotsByName(AddDirectoryDialog)
 
     def retranslateUi(self, AddDirectoryDialog):
