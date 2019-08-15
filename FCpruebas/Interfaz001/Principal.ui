@@ -20,9 +20,9 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>420</y>
-     <width>81</width>
-     <height>51</height>
+     <y>410</y>
+     <width>91</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="text">
@@ -31,6 +31,29 @@
    <property name="icon">
     <iconset>
      <normaloff>Iconos/folder.svg</normaloff>Iconos/folder.svg</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>60</width>
+     <height>60</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="archivo">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>410</y>
+     <width>61</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>Iconos/file.svg</normaloff>Iconos/file.svg</iconset>
    </property>
    <property name="iconSize">
     <size>

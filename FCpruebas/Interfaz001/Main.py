@@ -11,10 +11,11 @@ class MainPage(QDialog):
         loadUi('Principal.ui', self)
 
         #Accion 
-        self.carpeta.clicked.connect(self.abrir)
+        self.carpeta.clicked.connect(self.abrirC)
+        self.archivo.clicked.connect(self.abrirA)
 
          
-    def abrir(self):
+    def abrirC(self):
         #Importar
         from Abrircarpeta import AbrirCarpeta
         a = AbrirCarpeta()
@@ -24,8 +25,17 @@ class MainPage(QDialog):
 
         #Finalizar sin cerrar  
         a.exec_()
-      
- 
+
+    def abrirA(self):
+        #Importar
+        from Abrirarchivo import AbrirArchivo
+        b = AbrirArchivo()
+
+        #Accion 
+        b.CArchivo.clicked.connect(b.obtenerString)  
+
+        #Finalizar sin cerrar  
+        b.exec_()
   
        
         

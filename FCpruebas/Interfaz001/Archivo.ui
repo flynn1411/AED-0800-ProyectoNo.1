@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>371</width>
-    <height>117</height>
+    <width>373</width>
+    <height>118</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPlainTextEdit" name="carpetastring">
+  <widget class="QPlainTextEdit" name="archivostring">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -23,10 +23,10 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="CCarpeta">
+  <widget class="QPushButton" name="CArchivo">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>330</x>
      <y>10</y>
      <width>41</width>
      <height>31</height>
@@ -40,7 +40,7 @@
      <normaloff>Iconos/accept.svg</normaloff>Iconos/accept.svg</iconset>
    </property>
   </widget>
-  <widget class="QTextEdit" name="guardado">
+  <widget class="QTextEdit" name="guardadoarchivo">
    <property name="geometry">
     <rect>
      <x>10</x>
