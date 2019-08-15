@@ -1,4 +1,6 @@
 #-*-coding: utf-8-*-
+from compare import*
+
 """
     Nodo
 """
@@ -6,6 +8,7 @@ class Node:
     def __init__(self, value):
         self.value = value
         self.next = None
+
         
 """
     Clases de los valores de un nodo cualquiera
@@ -22,6 +25,7 @@ class File:
     def __init__(self, name):
         self.name = name
 
+
 """
     Lista enlazada y sus metódos.
     Se ordenarán sus elementos utilizando la libreria Compare
@@ -34,14 +38,35 @@ class LinkedList:
         return self.addInListInner(newNode, self.first)
 
     def addInListInner(self, newNode, current):
+        compare = Compare()
+
         if(not self.first):
             self.first = newNode
             return True
 
         else:
-            if(current.next):
-                return self.addInListInner(newNode, current.next)
+            previousNode = None
+            orphans = None
 
-            else:
-                current.next = newNode
-                return True
+            while(current.next):
+                if(compare.compare(current.value.name, newNode.value.name) < 0):
+                    previousNode = current
+                    current = current.next
+
+                elif(compare.compare(current.value.name, newNode.value.name) == 0):
+                    if(isinstance(current, Directory) and current.value.children.first):
+                        orphans = current.value.children.first
+                        self.saveTheOrphans(orphans, newNode)
+
+                    if(not previousNode):
+                        self.first = newNode
+                        self.first.next = current.next
+                        return True
+                    
+                    else:
+                        previousNode.next = newNode
+                        newNode.next = current.next
+                        return True
+                
+                else:
+                    

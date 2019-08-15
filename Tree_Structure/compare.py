@@ -24,7 +24,7 @@ class Compare:
 
         lesser = self.compareLesserLength(str1, str2)
 
-        for i in lesser:
+        for i in range (lesser):
             if(self.alphabet.index(str1[i]) > self.alphabet.index(str2[i])):
                 return 1
             
@@ -39,3 +39,6 @@ class Compare:
 
         else:
             return 1
+
+
+compare = Compare()
