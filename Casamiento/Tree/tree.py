@@ -1,10 +1,10 @@
 #-*-coding: utf-8-*-
-
-from list import *
+from Tree.linkedList import*
 
 class Tree:
     def __init__(self):
         self.root = Node(Directory("/"))
+        self.list = LinkedList()
 
     def _add(self, name, type, parentNode):
         if(type == 'F'):
