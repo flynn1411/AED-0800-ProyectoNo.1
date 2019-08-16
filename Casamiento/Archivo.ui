@@ -52,5 +52,22 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>CArchivo</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>350</x>
+     <y>25</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>186</x>
+     <y>58</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -52,5 +52,22 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>CCarpeta</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>340</x>
+     <y>25</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>185</x>
+     <y>58</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
