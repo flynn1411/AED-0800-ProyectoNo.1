@@ -56,7 +56,7 @@ class LinkedList:
                 elif(compare.compare(current.value.name, newNode.value.name) == 0):
                     if(isinstance(current, Directory) and current.value.children.first):
                         orphans = current.value.children.first
-                        self.saveTheOrphans(orphans, newNode)
+                        #newNode = self.saveTheOrphans(orphans, newNode)
 
                     if(not previousNode):
                         self.first = newNode
@@ -69,4 +69,40 @@ class LinkedList:
                         return True
                 
                 else:
-                    
+                    if(not previousNode):
+                        self.first = newNode
+                        self.first.next = current.next
+                        return True
+
+                    else:
+                        previousNode.next = newNode
+                        newNode.next = current
+
+    def printList(self):
+        current = self.first
+        trail = " "
+
+        while(current.next):
+            trail = trail + current.value.name + "->"
+            current = current.next
+
+        trail = trail + current.value.name
+
+        print(trail)
+
+list = LinkedList()
+
+list.addInList(Node(File("hola")))
+list.printList()
+
+list.addInList(Node(Directory("H0l@xd01")))
+list.printList()
+
+list.addInList(Node(File("Ariel")))
+list.printList()
+
+list.addInList(Node(File("hola")))
+list.printList()
+
+list.addInList(Node(Directory("Fernando")))
+list.printList()
