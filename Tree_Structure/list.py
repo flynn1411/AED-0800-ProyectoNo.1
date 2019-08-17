@@ -35,48 +35,23 @@ class LinkedList:
         self.first = None
     
     def addInList(self, newNode):
-        return self.addInListInner(newNode, self.first)
-
-    def addInListInner(self, newNode, current):
-        compare = Compare()
-
         if(not self.first):
             self.first = newNode
             return True
 
         else:
-            previousNode = None
-            orphans = None
+            current = self.first;
+            previous = None
+            currentChildren = None
 
-            while(current.next):
-                if(compare.compare(current.value.name, newNode.value.name) < 0):
-                    previousNode = current
-                    current = current.next
+            while(current):
+                #si el nombre del actual es menor al 
 
-                elif(compare.compare(current.value.name, newNode.value.name) == 0):
-                    if(isinstance(current, Directory) and current.value.children.first):
-                        orphans = current.value.children.first
-                        #newNode = self.saveTheOrphans(orphans, newNode)
 
-                    if(not previousNode):
-                        self.first = newNode
-                        self.first.next = current.next
-                        return True
-                    
-                    else:
-                        previousNode.next = newNode
-                        newNode.next = current.next
-                        return True
-                
-                else:
-                    if(not previousNode):
-                        self.first = newNode
-                        self.first.next = current.next
-                        return True
 
-                    else:
-                        previousNode.next = newNode
-                        newNode.next = current
+
+
+
 
     def printList(self):
         current = self.first
