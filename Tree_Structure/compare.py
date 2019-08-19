@@ -1,6 +1,6 @@
 class Compare:
     def __init__(self):
-        self.alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        self.alphabet = ".0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     def compareGreaterLength(self, str1, str2):
         g = len(str1)
