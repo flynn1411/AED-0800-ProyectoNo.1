@@ -116,7 +116,46 @@ class LinkedList:
             #newNode.value.children.addInList(currentChild)
             return newNode
 
+    def removeFromList(self, removevalue):
+        current = self.first
+        previous = None
 
+        while(current):
+            if(current.value.name == removevalue):
+                #si no hay previo ni siguente, el que se desea borrar es el primero de la lista
+                if(not previous and not current.next):
+                    self.first = None
+                    return True
+
+                elif(not previous and current.next):
+                    self.first = current.next
+                    return True
+
+                elif(previous and not current.next):
+                    previous.next = None
+                    return True
+                
+                else:
+                    previous.next = current.next
+                    return True
+
+            else:
+                previous = current
+                current = current.next
+
+    def searchInList(self, searchValue):
+        return self.searchInnerInList(searchValue, self.first)
+
+    def searchInnerInList(self, searchValue, current):
+        if(not current):
+            return None
+        else:
+            if(current.value.name == searchValue):
+                return current
+            else:
+                return self.searchInnerInList(searchValue, current.next)
+
+"""
     def printList(self):
         current = self.first
         trail = " "
@@ -156,3 +195,9 @@ list.printList()
 
 list.addInList(Node(Directory("3Fernando")))
 list.printList()
+
+list.removeFromList("H0l@xd01")
+list.printList()
+
+print(list.searchInList("Fernando"))
+"""
