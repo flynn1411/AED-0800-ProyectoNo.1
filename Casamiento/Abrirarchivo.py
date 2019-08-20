@@ -5,14 +5,16 @@ from PyQt5.uic import loadUi
 
 class AbrirArchivo(QDialog):
     def __init__(self):
+        self.word = ""
         #Cargar la UI
         super(AbrirArchivo,self).__init__()
         loadUi('Archivo.ui', self)
    
     def obtenerString(self):
         #Guardar el string
-        word = self.archivostring.toPlainText()
-        self.guardadoarchivo.setText(word)
+        self.word = self.archivostring.toPlainText()
+        self.guardadoarchivo.setText(self.word)
+        #return self.word
    
         
 

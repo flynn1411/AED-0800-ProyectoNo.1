@@ -7,15 +7,16 @@ from PyQt5.uic import loadUi
 
 class AbrirCarpeta(QDialog):
     def __init__(self):
+        self.word = ""
         #Cargar la UI
         super(AbrirCarpeta,self).__init__()
         loadUi('Carpeta.ui', self)
    
     def obtenerString(self):
         #Guardar el string
-        word = self.carpetastring.toPlainText()
-        self.guardado.setText(word)
-        return word
+        self.word = self.carpetastring.toPlainText()
+        self.guardado.setText(self.word)
+        return self.word
         
 
         

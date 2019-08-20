@@ -25,7 +25,7 @@ class MainPage(QDialog):
     def mostrar(self):
              
         #str(self.arbol.root.value.children.first.value.name) 
-        self.josue = ["Funciono"]
+        self.josue = ["Funciono", str(self.arbol.root.value.children.first.value.name)]
         self.Lista.addItems(self.josue)   
         
          
@@ -51,10 +51,15 @@ class MainPage(QDialog):
         b = AbrirArchivo()
 
         #Accion 
-        b.CArchivo.clicked.connect(b.obtenerString)  
+        b.CArchivo.clicked.connect(b.obtenerString)
+
 
         #Finalizar sin cerrar  
         b.exec_()
+
+        self.arbol._add(b.word, "F", self.arbol.root)
+        print(b.word)
+        print(self.arbol.root.value.children.first.value.name)
   
        
         
