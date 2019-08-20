@@ -16,7 +16,7 @@ class AbrirCarpeta(QDialog):
         #Guardar el string
         self.word = self.carpetastring.toPlainText()
         self.guardado.setText(self.word)
-        return self.word
+       
         
 
         

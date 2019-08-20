@@ -20,7 +20,11 @@ class MainPage(QDialog):
         self.carpeta.clicked.connect(self.abrirC)
         self.archivo.clicked.connect(self.abrirA)
         self.o.clicked.connect(self.mostrar)
+        self.borrar.clicked.connect(self.borrar)
         
+
+
+
 
     def mostrar(self):
              
@@ -29,21 +33,26 @@ class MainPage(QDialog):
         self.Lista.addItems(self.josue)   
         
          
+
+
     def abrirC(self):
         #Importar
         from Abrircarpeta import AbrirCarpeta
         a = AbrirCarpeta()
 
         #Accion 
-        prueba = a.CCarpeta.clicked.connect(a.obtenerString)
-        
-        
+        a.CCarpeta.clicked.connect(a.obtenerString)
+               
         #Finalizar sin cerrar  
         a.exec_()
 
-        self.arbol._add(prueba, "D", self.arbol.root)
-        print(prueba)
+        self.arbol._add(a.word, "D", self.arbol.root)
+        print(a.word)
         print(self.arbol.root.value.children.first.value.name)
+
+
+
+
 
     def abrirA(self):
         #Importar
@@ -53,13 +62,17 @@ class MainPage(QDialog):
         #Accion 
         b.CArchivo.clicked.connect(b.obtenerString)
 
-
         #Finalizar sin cerrar  
         b.exec_()
 
         self.arbol._add(b.word, "F", self.arbol.root)
         print(b.word)
         print(self.arbol.root.value.children.first.value.name)
+
+
+
+    def borrar(self):
+        
   
        
         

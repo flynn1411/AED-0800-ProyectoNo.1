@@ -65,7 +65,7 @@
   <widget class="QPushButton" name="archivo">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>130</x>
      <y>430</y>
      <width>80</width>
      <height>68</height>
@@ -77,6 +77,29 @@
    <property name="icon">
     <iconset>
      <normaloff>Iconos/file.svg</normaloff>Iconos/file.svg</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>60</width>
+     <height>60</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="borrar">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>430</y>
+     <width>61</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>Iconos/delete.svg</normaloff>Iconos/delete.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
