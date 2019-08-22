@@ -21,17 +21,14 @@ class MainPage(QDialog):
         self.archivo.clicked.connect(self.abrirA)
         self.o.clicked.connect(self.mostrar)
         #self.borrar.clicked.connect(self.borrar)
-        self.w = self.Lista.itemDoubleClicked['QListWidgetItem*'].connect(self.navegar)
+        self.Lista.itemDoubleClicked.connect(self.navegar)
         
 
     def navegar(self):
         
-        valor = self.Lista.selectedItems()
-        a = self.Lista.currentTextChanged['QString']
+        valor = self.Lista.selectedItems()[0].text()
         print(valor)
-        print(a)
-
-        QMessageBox.information(self, "Lista", "You clicked: "+item.text())
+        self.Lista.clear()
                
 
     def mostrar(self):

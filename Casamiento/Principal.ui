@@ -108,16 +108,6 @@
     </size>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>50</y>
-     <width>181</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections>
@@ -134,38 +124,6 @@
     <hint type="destinationlabel">
      <x>164</x>
      <y>224</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>Lista</sender>
-   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
-   <receiver>Lista</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>164</x>
-     <y>224</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>164</x>
-     <y>224</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>Lista</sender>
-   <signal>currentItemChanged(QListWidgetItem*,QListWidgetItem*)</signal>
-   <receiver>textEdit</receiver>
-   <slot>paste()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>164</x>
-     <y>224</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>500</x>
-     <y>65</y>
     </hint>
    </hints>
   </connection>

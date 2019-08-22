@@ -1,2 +1,2 @@
 python memory.py
-code prueba.mem
+cat prueba.mem

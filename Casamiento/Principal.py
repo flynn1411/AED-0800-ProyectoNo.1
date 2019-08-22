@@ -45,14 +45,9 @@ class Ui_Dialog(object):
         self.borrar.setIcon(icon2)
         self.borrar.setIconSize(QtCore.QSize(60, 60))
         self.borrar.setObjectName("borrar")
-        self.textEdit = QtWidgets.QTextEdit(Dialog)
-        self.textEdit.setGeometry(QtCore.QRect(410, 50, 181, 31))
-        self.textEdit.setObjectName("textEdit")
 
         self.retranslateUi(Dialog)
         self.o.clicked.connect(self.Lista.clear)
-        self.Lista.itemDoubleClicked['QListWidgetItem*'].connect(self.Lista.clear)
-        self.Lista.currentItemChanged['QListWidgetItem*','QListWidgetItem*'].connect(self.textEdit.paste)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):

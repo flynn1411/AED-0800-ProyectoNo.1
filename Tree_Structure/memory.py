@@ -43,9 +43,6 @@ file = open("prueba.mem", "w")
 file.write(content)
 file.close()
 
-newN = 1
-print("/t"*newN)
-
 """
 e/
     a.txt
