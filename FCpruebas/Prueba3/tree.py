@@ -1,6 +1,6 @@
 #-*-coding: utf-8-*-
 
-from Tree.list import *
+from list import *
 
 class Tree:
     def __init__(self):

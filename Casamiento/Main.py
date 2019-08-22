@@ -13,9 +13,34 @@ class MainPage(QDialog):
         
         self.arbol = Tree()
 
-        
-        self.josue = ["Hola" , "Mundo"]
-        self.Lista.addItems(self.josue)   
+        self.arbol._add("hola", "F", self.arbol.root)
+        self.arbol._add("e", "D", self.arbol.root)
+        self.arbol._add("a.txt", "F", self.arbol.root.value.children.first)
+        self.arbol._add("log", "D", self.arbol.root)
+        self.arbol._add("xdxd", "F", self.arbol.root.value.children.first)
+        self.arbol._add("archivo", "D", self.arbol.root.value.children.first)
+        self.arbol._add("archivo2", "D", self.arbol.root.value.children.first.value.children.first.next)
+        self.arbol._add("Prueba", "F", self.arbol.root.value.children.first.value.children.first.next.value.children.first)
+        self.arbol._add("Hola", "F", self.arbol.root.value.children.first.next.next)
+
+        self.array = []
+        #hola , e , log.
+        #a.txt archivo xdxd
+        current = self.arbol.root.value.children.first
+
+        while(current.next):
+
+            self.array.append(current.value.name)
+            current = current.next
+            
+        self.array.append(current.value.name)
+
+
+
+
+
+
+        self.Lista.addItems(self.array)   
         #Accion 
         self.carpeta.clicked.connect(self.abrirC)
         self.archivo.clicked.connect(self.abrirA)
@@ -24,18 +49,65 @@ class MainPage(QDialog):
         self.Lista.itemDoubleClicked.connect(self.navegar)
         
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     def navegar(self):
         
         valor = self.Lista.selectedItems()[0].text()
         print(valor)
-        self.Lista.clear()
-               
 
+        encontrado = self.arbol._search(valor,self.arbol.root)
+        print(encontrado)
+                
+        self.Lista.clear()
+
+        #current = self.arbol.root.value.children.first
+
+        temporal = encontrado.value.children.first
+        print(temporal)
+        while(temporal.next):
+
+            self.array.append(temporal.value.name)
+            temporal = temporal.next
+            
+        self.array.append(temporal.value.name)
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     def mostrar(self):
              
         #str(self.arbol.root.value.children.first.value.name) 
-        self.josue = ["Funciono", str(self.arbol.root.value.children.first.value.name)]
-        self.Lista.addItems(self.josue)   
+        self.root = ["Funciono", self.arbol.root.value.children.first.value.name]
+        self.Lista.addItems(self.root)   
         
          
 
@@ -51,7 +123,8 @@ class MainPage(QDialog):
         #Finalizar sin cerrar  
         a.exec_()
 
-        self.arbol._add(a.word, "D", self.arbol.root)
+        nodoC = self.arbol.root
+        self.arbol._add(a.word, "D", nodoC)
         print(a.word)
         print(self.arbol.root.value.children.first.value.name)
 
@@ -70,14 +143,21 @@ class MainPage(QDialog):
         #Finalizar sin cerrar  
         b.exec_()
 
-        self.arbol._add(b.word, "F", self.arbol.root)
+        nodoA = self.arbol.root
+        self.arbol._add(b.word, "F", nodoActual)
         print(b.word)
         print(self.arbol.root.value.children.first.value.name)
 
 
 
+
+
     def borrar(self):
         pass
+
+        """ valor = self.Lista.selectedItems()[0].text() """
+
+
         
         
   
