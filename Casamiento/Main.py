@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QApplication,QDialog
+from PyQt5.QtWidgets import QApplication,QDialog,QMessageBox
 from PyQt5.uic import loadUi
 from Tree.tree import *
 
@@ -20,11 +20,19 @@ class MainPage(QDialog):
         self.carpeta.clicked.connect(self.abrirC)
         self.archivo.clicked.connect(self.abrirA)
         self.o.clicked.connect(self.mostrar)
-        self.borrar.clicked.connect(self.borrar)
+        #self.borrar.clicked.connect(self.borrar)
+        self.w = self.Lista.itemDoubleClicked['QListWidgetItem*'].connect(self.navegar)
         
 
+    def navegar(self):
+        
+        valor = self.Lista.selectedItems()
+        a = self.Lista.currentTextChanged['QString']
+        print(valor)
+        print(a)
 
-
+        QMessageBox.information(self, "Lista", "You clicked: "+item.text())
+               
 
     def mostrar(self):
              
@@ -72,6 +80,8 @@ class MainPage(QDialog):
 
 
     def borrar(self):
+        pass
+        
         
   
        
