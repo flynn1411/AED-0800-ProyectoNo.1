@@ -4,23 +4,20 @@ class MemoryHandler():
     def __init__(self):
         pass
 
-    def save(self, node, memoryContent = "", level = 1):
+    def save(self, node, memoryContent = "", depth = 0):
         if(not node):
             return ""
 
         else:
             if(not isinstance(node.value, Directory)):
-                memoryContent = ("%s%s\n%s"%(memoryContent, node.value.name, self.save(node.next, memoryContent)))
+                memoryContent = ("%s%s\n%s"%(memoryContent, node.value.name, self.save(node.next, "\t"*depth, depth)))
 
             else:
-                directoryName = node.value.name
                 children = ""
                 if(node.value.children.first):
-                    spacing = "\t"*level
-                    newLevel = level+1
-                    children = self.save(node.value.children.first, spacing, newLevel)
+                    children = self.save(node.value.children.first, "\t"*(depth+1), depth+1)
 
-                memoryContent = ("%s%s/\n%s%s"%(memoryContent, directoryName, children, self.save(node.next, memoryContent)))
+                memoryContent = ("%s%s/\n%s%s"%(memoryContent, node.value.name, children, self.save(node.next, "\t"*depth, depth)))
         
         return memoryContent
 
@@ -36,6 +33,7 @@ tree._add("log", "D", tree.root)
 tree._add("xdxd", "F", tree.root.value.children.first)
 tree._add("archivo", "D", tree.root.value.children.first)
 tree._add("archivo2", "D", tree.root.value.children.first.value.children.first.next)
+tree._add("Prueba", "F", tree.root.value.children.first.value.children.first.next.value.children.first)
 tree._add("Hola", "F", tree.root.value.children.first.next.next)
 
 memoryHandler = MemoryHandler()
