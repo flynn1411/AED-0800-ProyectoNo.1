@@ -13,9 +13,7 @@ class AbrirArchivo(QDialog):
     def obtenerString(self):
         #Guardar el string
         self.word = self.archivostring.toPlainText()
-        self.guardadoarchivo.setText(self.word)
-        #return self.word
-   
+          
         
 
 

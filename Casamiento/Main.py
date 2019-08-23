@@ -24,9 +24,9 @@ class MainPage(QDialog):
         self.arbol._add("Hola", "F", self.arbol.root.value.children.first.next.next)
 
        
-        self.padres = []
-        self.padre = self.arbol.root
-        self.padres.append(self.padre)
+        self.padres = [self.arbol.root,]
+        """ self.padre = self.arbol.root
+        self.padres.append(self.padre) """
 
         self.mostrarLista(self.arbol.root.value.children.first)
 
@@ -175,7 +175,10 @@ class MainPage(QDialog):
         #Agregar archivo al arbol
         self.arbol._add(a.word, "D", self.padres[len(self.padres)-1])
         
-        
+        """ #Mostrar el arbol
+        self.Lista.clear()
+        self.mostrarLista(self.padres[len(self.padres)-1])
+        """
         """ print(a.word)
         print(self.arbol.root.value.children.first.value.name) """
 
@@ -195,9 +198,12 @@ class MainPage(QDialog):
         b.exec_()
 
         #Agregar file al arbol
-        
         self.arbol._add(b.word, "F", self.padres[len(self.padres)-1])
 
+        """ #Mostrar el arbol
+        self.Lista.clear()
+        self.mostrarLista(self.padres[len(self.padres)-1])
+        """
 
         """ print(b.word)
         print(self.arbol.root.value.children.first.value.name) """
