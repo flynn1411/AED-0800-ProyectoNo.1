@@ -23,7 +23,14 @@ class MainPage(QDialog):
         self.arbol._add("Prueba", "F", self.arbol.root.value.children.first.value.children.first.next.value.children.first)
         self.arbol._add("Hola", "F", self.arbol.root.value.children.first.next.next)
 
-        self.array = []
+       
+        self.padres = []
+        self.padre = self.arbol.root
+        self.padres.append(self.padre)
+
+        self.mostrarLista(self.arbol.root.value.children.first)
+
+        """ self.array = []
         #hola , e , log.
         #a.txt archivo xdxd
         current = self.arbol.root.value.children.first
@@ -35,16 +42,18 @@ class MainPage(QDialog):
             
         self.array.append(current.value.name)
 
+        self.Lista.addItems(self.array) """   
 
 
 
 
 
-        self.Lista.addItems(self.array)   
+
+
         #Accion 
         self.carpeta.clicked.connect(self.abrirC)
         self.archivo.clicked.connect(self.abrirA)
-        self.o.clicked.connect(self.mostrar)
+        self.o.clicked.connect(self.back)
         #self.borrar.clicked.connect(self.borrar)
         self.Lista.itemDoubleClicked.connect(self.navegar)
         
@@ -55,10 +64,20 @@ class MainPage(QDialog):
 
 
 
+        
+    def mostrarLista(self,current):
+        
+        
+        self.array = []
+        while(current.next):
 
+            self.array.append(current.value.name)
+            current = current.next
+            
+        self.array.append(current.value.name)
 
-
-
+        #Mostrar la lista 
+        self.Lista.addItems(self.array) 
 
 
 
@@ -68,19 +87,24 @@ class MainPage(QDialog):
 
     def navegar(self):
         
-        valor = self.Lista.selectedItems()[0].text()
-        print(valor)
+        
+        #Encontrar el nodo 
+        valor = self.Lista.selectedItems()[0].text()       
+        encontrado = self.arbol._search(valor,self.padres[len(self.padres)-1])
 
-        encontrado = self.arbol._search(valor,self.arbol.root)
-        print(encontrado)
-                
+        #Guardar el padre 
+        self.padres.append(encontrado)
+        
+        #Limpar la lista                
         self.Lista.clear()
 
-        #current = self.arbol.root.value.children.first
-
-        array2 = []
+        #Mostrar los hijos del nodo
+        
         temporal = encontrado.value.children.first
-        print(temporal.value.name)
+        
+        self.mostrarLista(temporal)
+        
+        """ array2 = []
         while(temporal.next):
 
             array2.append(temporal.value.name)
@@ -88,7 +112,7 @@ class MainPage(QDialog):
             
         array2.append(temporal.value.name)
 
-        self.Lista.addItems(array2)   
+        self.Lista.addItems(array2)    """
         
 
 
@@ -106,11 +130,34 @@ class MainPage(QDialog):
 
 
         
-    def mostrar(self):
-             
-        #str(self.arbol.root.value.children.first.value.name) 
-        self.root = ["Funciono", self.arbol.root.value.children.first.value.name]
-        self.Lista.addItems(self.array)   
+    def back(self):
+    
+        self.padres.pop(len(self.padres)-1)
+        regresar = self.padres[len(self.padres)-1]
+
+        dad = regresar.value.children.first
+
+        self.mostrarLista(dad)   
+         
+        """ array3 = []
+        while(regresar.next):
+
+            array3.append(regresar.value.name)
+            regresar = regresar.next
+            
+        array3.append(regresar.value.name)
+
+        self.Lista.addItems(array3)    """
+        
+        
+
+
+
+
+
+
+
+
         
          
 
