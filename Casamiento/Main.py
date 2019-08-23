@@ -78,14 +78,17 @@ class MainPage(QDialog):
 
         #current = self.arbol.root.value.children.first
 
+        array2 = []
         temporal = encontrado.value.children.first
-        print(temporal)
+        print(temporal.value.name)
         while(temporal.next):
 
-            self.array.append(temporal.value.name)
+            array2.append(temporal.value.name)
             temporal = temporal.next
             
-        self.array.append(temporal.value.name)
+        array2.append(temporal.value.name)
+
+        self.Lista.addItems(array2)   
         
 
 
@@ -107,7 +110,7 @@ class MainPage(QDialog):
              
         #str(self.arbol.root.value.children.first.value.name) 
         self.root = ["Funciono", self.arbol.root.value.children.first.value.name]
-        self.Lista.addItems(self.root)   
+        self.Lista.addItems(self.array)   
         
          
 
