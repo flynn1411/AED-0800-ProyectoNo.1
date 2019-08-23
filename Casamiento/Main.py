@@ -158,8 +158,7 @@ class MainPage(QDialog):
 
 
 
-        
-         
+             
 
 
     def abrirC(self):
@@ -173,10 +172,12 @@ class MainPage(QDialog):
         #Finalizar sin cerrar  
         a.exec_()
 
-        nodoC = self.arbol.root
-        self.arbol._add(a.word, "D", nodoC)
-        print(a.word)
-        print(self.arbol.root.value.children.first.value.name)
+        #Agregar archivo al arbol
+        self.arbol._add(a.word, "D", self.padres[len(self.padres)-1])
+        
+        
+        """ print(a.word)
+        print(self.arbol.root.value.children.first.value.name) """
 
 
 
@@ -193,10 +194,13 @@ class MainPage(QDialog):
         #Finalizar sin cerrar  
         b.exec_()
 
-        nodoA = self.arbol.root
-        self.arbol._add(b.word, "F", nodoActual)
-        print(b.word)
-        print(self.arbol.root.value.children.first.value.name)
+        #Agregar file al arbol
+        
+        self.arbol._add(b.word, "F", self.padres[len(self.padres)-1])
+
+
+        """ print(b.word)
+        print(self.arbol.root.value.children.first.value.name) """
 
 
 
@@ -205,7 +209,10 @@ class MainPage(QDialog):
     def borrar(self):
         pass
 
-        """ valor = self.Lista.selectedItems()[0].text() """
+        """ aBorrar = self.Lista.selectedItems()[0].text()
+        self.arbol._delet(aBorrar,self.padres[len(self.padres)-1]) """
+        
+        
 
 
         
