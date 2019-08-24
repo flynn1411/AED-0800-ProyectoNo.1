@@ -1,8 +1,8 @@
 from tree import *
 
 class MemoryHandler:
-    def __init__(self, tree):
-        self.tree = tree
+    def __init__(self):
+        self.tree = Tree()
 
     def _save(self):
         pass

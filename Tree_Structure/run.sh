@@ -1,2 +1,3 @@
 python memory.py
-code Memory/prueba.mem
+cat Memory/prueba.mem
+code Memory/loaded.mem
