@@ -10,7 +10,7 @@ class AbrirCarpeta(QDialog):
         self.word = ""
         #Cargar la UI
         super(AbrirCarpeta,self).__init__()
-        loadUi('Carpeta.ui', self)
+        loadUi('Nucleo/Carpeta.ui', self)
    
     def obtenerString(self):
         #Guardar el string

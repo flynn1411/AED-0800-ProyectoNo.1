@@ -1,6 +1,6 @@
 #-*-coding: utf-8-*-
 
-from list import *
+from Nucleo.list import *
 
 class Tree:
     def __init__(self):

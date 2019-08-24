@@ -16,19 +16,6 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <widget class="QPushButton" name="o">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>0</y>
-     <width>21</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>o</string>
-   </property>
-  </widget>
   <widget class="QListWidget" name="Lista">
    <property name="geometry">
     <rect>
@@ -110,22 +97,5 @@
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>o</sender>
-   <signal>clicked()</signal>
-   <receiver>Lista</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>13</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>164</x>
-     <y>224</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

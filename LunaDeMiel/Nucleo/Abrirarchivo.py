@@ -8,7 +8,7 @@ class AbrirArchivo(QDialog):
         self.word = ""
         #Cargar la UI
         super(AbrirArchivo,self).__init__()
-        loadUi('Archivo.ui', self)
+        loadUi('Nucleo/Archivo.ui', self)
    
     def obtenerString(self):
         #Guardar el string

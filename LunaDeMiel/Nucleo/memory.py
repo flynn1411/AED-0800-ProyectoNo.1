@@ -1,4 +1,4 @@
-from tree import *
+from Nucleo.tree import *
 
 class MemoryHandler:
     def __init__(self):
