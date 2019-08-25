@@ -80,9 +80,11 @@ class LinkedList:
 
                 #Si el nombre del actual es el mismo al que se desea agregar, se reemplazan
                 elif(comparison == 0):
-                    if(isinstance(newNode.value, Directory) and isinstance(current.value, Directory)
+                    if(
+                        (isinstance(newNode.value, Directory) and isinstance(current.value, Directory))
                         or 
-                        isinstance(newNode.value, File) and isinstance(current.value, File)):
+                        (isinstance(newNode.value, File) and isinstance(current.value, File))
+                        ):
 
                         if(isinstance(newNode.value, Directory)):
                             #Se guardan los hijos del actual en el que se desea agregar
@@ -102,8 +104,12 @@ class LinkedList:
                         return True
 
                     else:
-                        previous = current
-                        current = current.next
+                        if(current.next):
+                            previous = current
+                            current = current.next
+
+                        else:
+                            current.next = newNode
 
                 #Si el actual es mayor al que se desea agregar, se agrega el nuevo antes del actual
                 else:

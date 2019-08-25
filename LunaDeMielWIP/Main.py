@@ -68,6 +68,7 @@ class MainPage(QDialog):
                 item = QListWidgetItem(current.value.name)
                 if(isinstance(current.value, Directory)):
                     item.setIcon(QIcon(r"Nucleo/Iconos/folder.png"))
+                    print(item.icon())
                     filaCarpetas.push(Node(item))
                 
                 else:
