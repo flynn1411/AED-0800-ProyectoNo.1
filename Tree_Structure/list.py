@@ -70,22 +70,23 @@ class LinkedList:
 
                 #Si el nombre del actual es el mismo al que se desea agregar, se reemplazan
                 elif(comparison == 0):
-                    #Se guardan los hijos del actual en el que se desea agregar
-                    if(isinstance(newNode.value, Directory)):
+                    if(isinstance(newNode.value, Directory) and isinstance(current.value, Directory)):
+                        #Se guardan los hijos del actual en el que se desea agregar
                         newNode = self.mergeChildren(current, newNode)
+                        current = current.next
 
                     #Si no hay previo, esto me indica que el nodo a reemplazar
                     #es el primero en la lista
                     if(not previous):
                         if(current.next):
-                            newNode.next = current.next
+                            newNode.next = current
                         
                         self.first = newNode
                         return True
 
                     else:
                         if(current.next):
-                            newNode.next = current.next
+                            newNode.next = current
 
                         previous.next = newNode
                         return True
@@ -116,25 +117,34 @@ class LinkedList:
             #newNode.value.children.addInList(currentChild)
             return newNode
 
-    def removeFromList(self, removevalue):
+    def removeFromList(self, removeValue, type = "D"):
         current = self.first
         previous = None
+        nameWasFound = False
 
         while(current):
-            if(current.value.name == removevalue):
+            if(type == "D"):
+                if(current.value.name == removeValue and isinstance(current.value, Directory)):
+                    nameWasFound = True
+            
+            else:
+                if(current.value.name == removeValue and isinstance(current.value, File)):
+                    nameWasFound = True
+
+            if(nameWasFound):
                 #si no hay previo ni siguente, el que se desea borrar es el primero de la lista
                 if(not previous and not current.next):
                     self.first = None
                     return True
-
+                    
                 elif(not previous and current.next):
                     self.first = current.next
                     return True
-
+                    
                 elif(previous and not current.next):
                     previous.next = None
                     return True
-                
+                    
                 else:
                     previous.next = current.next
                     return True
@@ -143,19 +153,26 @@ class LinkedList:
                 previous = current
                 current = current.next
 
-    def searchInList(self, searchValue):
-        return self.searchInnerInList(searchValue, self.first)
+    def searchInList(self, searchValue, type = "D"):
+        return self.searchInnerInList(searchValue, self.first, type)
 
-    def searchInnerInList(self, searchValue, current):
+    def searchInnerInList(self, searchValue, current, type):
         if(not current):
             return None
         else:
-            if(current.value.name == searchValue):
-                return current
-            else:
-                return self.searchInnerInList(searchValue, current.next)
+            if(type == "D"):
+                if(current.value.name == searchValue and isinstance(current.value, Directory)):
+                    return current
+                else:
+                    return self.searchInnerInList(searchValue, current.next, type)
 
-"""
+            else:
+                if(current.value.name == searchValue and isinstance(current.value, File)):
+                    return current
+                else:
+                    return self.searchInnerInList(searchValue, current.next, type)
+
+
     def printList(self):
         current = self.first
         trail = " "
@@ -196,8 +213,11 @@ list.printList()
 list.addInList(Node(Directory("3Fernando")))
 list.printList()
 
-list.removeFromList("H0l@xd01")
+list.addInList(Node(File("3Fernando")))
 list.printList()
 
-print(list.searchInList("Fernando"))
-"""
+list.removeFromList("H0l@xd01", "D")
+list.printList()
+
+print(list.searchInList("Fernando", "D").value.name)
+print(list.searchInList("3Fernando", "F").value)

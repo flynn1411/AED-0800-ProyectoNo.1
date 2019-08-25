@@ -14,8 +14,8 @@ class Tree:
 
         return parentNode.value.children.addInList(newNode)
 
-    def _delete(self, deleteValue, parentNode):
-        return parentNode.value.children.removeFromList(deleteValue)
+    def _delete(self, deleteValue, parentNode, type = "D"):
+        return parentNode.value.children.removeFromList(deleteValue, type)
 
-    def _search(self, searchValue, parentNode):
-        return parentNode.value.children.searchInList(searchValue)
+    def _search(self, searchValue, parentNode, type = "D"):
+        return parentNode.value.children.searchInList(searchValue, type)
