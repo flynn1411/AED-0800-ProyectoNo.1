@@ -19,7 +19,7 @@ class MainPage(QDialog):
 
         self.memoryHandler = MemoryHandler()
         self.treeA = self.memoryHandler.tree
-        file = open("Memory/TreeA.mem","r")
+        file = open("Memory/Tree-A.mem","r")
         content = file.read()
         file.close()
         self.memoryHandler.loadTree(content)
@@ -28,7 +28,7 @@ class MainPage(QDialog):
 
         self.memoryHandler = MemoryHandler()
         self.treeB = self.memoryHandler.tree
-        file = open("Memory/TreeB.mem","r")
+        file = open("Memory/Tree-B.mem","r")
         content = file.read()
         file.close()
         self.memoryHandler.loadTree(content)
@@ -45,15 +45,17 @@ class MainPage(QDialog):
         #Botones del programa
             #Arbol A
         self.AddFolderA.clicked.connect(self.folderWindowA)
-        self.AddFileA.clicked.connect(self.fileWindowB)
+        self.AddFileA.clicked.connect(self.fileWindowA)
         self.ViewTreeA.itemDoubleClicked.connect(self.surfA)
         self.DeletA.clicked.connect(self.DeleteA)
+        self.CopytoB.clicked.connect(self.CopyAtoB)
 
             #Arbol B
         self.AddFolderB.clicked.connect(self.folderWindowB)
         self.AddFileB.clicked.connect(self.fileWindowB)
         self.ViewTreeB.itemDoubleClicked.connect(self.surfB)
-        """ self.DeletA.clicked.connect(self.Delet) """
+        self.DeletB.clicked.connect(self.DeleteB)
+        self.CopyToA.clicked.connect(self.CopyBtoA)
 
 
 
@@ -63,9 +65,9 @@ class MainPage(QDialog):
         fileName = ""
 
         if(tree == "A"):
-            fileName = "Memory/TreeA.mem"
+            fileName = "Memory/Tree-A.mem"
         else:
-            fileName = "Memory/TreeB.mem"
+            fileName = "Memory/Tree-B.mem"
 
         file = open(fileName,"w")
         file.write(chain)
@@ -148,34 +150,6 @@ class MainPage(QDialog):
 
             else:
                 self.showTree(self.saveParentsA[len(self.saveParentsA)-1].value.children.first, "A")
-
-    def surfB(self):
-        selectedValue = self.ViewTreeB.selectedItems()[0].text()
-        typeOfSelection = self.ViewTreeB.selectedItems()[0].whatsThis()
-        self.ViewTreeB.clear()
-
-        if(selectedValue == ".."):
-            self.back("B")
-
-        elif(typeOfSelection == "File"):
-            self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
-
-        else:
-
-            #Encontrar el nodo
-            Found = self.treeB._search(selectedValue,self.saveParentsB[len(self.saveParentsB)-1], "D")
-
-            if(Found and isinstance(Found.value , Directory)):
-
-                #Guardar el padre 
-                self.saveParentsB.append(Found)
- 
-                #Mostrar los hijos del nodo
-                current = Found.value.children.first
-                self.showTree(current, "B")
-
-            else:
-                self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
 
     def back(self, tree):
 
@@ -260,12 +234,98 @@ class MainPage(QDialog):
                 self.treeA._delete(removeValue, parent, "F")
 
         self.ViewTreeA.clear()
-        self.showTree(self.treeA.root.value.children.first, "A")
+        self.showTree(self.saveParentsA[len(self.saveParentsA)-1].value.children.first, "A")
         chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
         self.save(chain, "A")
 
+    def CopyAtoB(self):
+
+        for item in self.ViewTreeA.selectedItems():
+            selectedValue = item.text()
+            typeOfItem = item.whatsThis()
+
+            if(typeOfItem == "File"):
+                
+                #Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "F")
+                self.treeB._add(selectedValue, "F", self.saveParentsB[len(self.saveParentsB)-1])
+                
+            else:
+                #Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "D")
+                self.treeB._add(selectedValue, "D", self.saveParentsB[len(self.saveParentsB)-1])
+
+        self.ViewTreeB.clear()
+        self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
+        chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
+        self.save(chain, "B")        
+
 
     #treeB
+
+    def surfB(self):
+        selectedValue = self.ViewTreeB.selectedItems()[0].text()
+        typeOfSelection = self.ViewTreeB.selectedItems()[0].whatsThis()
+        self.ViewTreeB.clear()
+
+        if(selectedValue == ".."):
+            self.back("B")
+
+        elif(typeOfSelection == "File"):
+            self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
+
+        else:
+
+            #Encontrar el nodo
+            Found = self.treeB._search(selectedValue,self.saveParentsB[len(self.saveParentsB)-1], "D")
+
+            if(Found and isinstance(Found.value , Directory)):
+
+                #Guardar el padre 
+                self.saveParentsB.append(Found)
+ 
+                #Mostrar los hijos del nodo
+                current = Found.value.children.first
+                self.showTree(current, "B")
+
+            else:
+                self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
+
+    def DeleteB(self):
+        parent = self.saveParentsB[len(self.saveParentsB)-1]
+        for item in self.ViewTreeB.selectedItems():
+            removeValue = item.text()
+            typeOfItem = item.whatsThis()
+
+            if(typeOfItem == "Directory"):
+                self.treeB._delete(removeValue, parent)
+            else:
+                self.treeB._delete(removeValue, parent, "F")
+
+        self.ViewTreeB.clear()
+        self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
+        chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
+        self.save(chain, "B")
+
+    def CopyBtoA(self):
+
+        for item in self.ViewTreeB.selectedItems():
+            selectedValue = item.text()
+            typeOfItem = item.whatsThis()
+
+            if(typeOfItem == "File"):
+                
+                #Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "F")
+                self.treeA._add(selectedValue, "F", self.saveParentsA[len(self.saveParentsA)-1])
+                
+            else:
+                #Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "D")
+                self.treeA._add(selectedValue, "D", self.saveParentsA[len(self.saveParentsA)-1])
+
+        self.ViewTreeA.clear()
+        self.showTree(self.saveParentsA[len(self.saveParentsA)-1].value.children.first, "A")
+        chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
+        self.save(chain, "A")        
+        
+
     def folderWindowB(self):
             #Importar
         from Core.DirectoryDialog import DirectoryDialog
