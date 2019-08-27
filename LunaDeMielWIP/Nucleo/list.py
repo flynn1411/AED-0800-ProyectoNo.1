@@ -137,7 +137,7 @@ class LinkedList:
             #newNode.value.children.addInList(currentChild)
             return newNode
 
-    def removeFromList(self, removeValue, type = "D"):
+    def removeFromList(self, removeValue, type = "F"):
         current = self.first
         previous = None
         nameWasFound = False
@@ -173,7 +173,7 @@ class LinkedList:
                 previous = current
                 current = current.next
 
-    def searchInList(self, searchValue, type = "D"):
+    def searchInList(self, searchValue, type = "F"):
         return self.searchInnerInList(searchValue, self.first, type)
 
     def searchInnerInList(self, searchValue, current, type):
@@ -191,54 +191,3 @@ class LinkedList:
                     return current
                 else:
                     return self.searchInnerInList(searchValue, current.next, type)
-
-
-""" def printList(self):
-        current = self.first
-        trail = " "
-
-        while(current.next):
-            trail = trail + current.value.name + "->"
-            current = current.next
-
-        trail = trail + current.value.name
-
-        print(trail)
-
-list = LinkedList()
-
-nodo0 = Node(Directory("hola"))
-nodo0.value.children.addInList(Node(File("a.py")))
-nodo0.value.children.addInList(Node(File("acdc.py")))
-
-nodo1 = Node(Directory("hola"))
-nodo1.value.children.addInList(Node(File("ab.py")))
-nodo1.value.children.addInList(Node(File("uno.py")))
-
-list.addInList(nodo0)
-list.printList()
-
-list.addInList(Node(Directory("H0l@xd01")))
-list.printList()
-
-list.addInList(Node(File("Ariel")))
-list.printList()
-
-list.addInList(nodo1)
-list.printList()
-
-list.addInList(Node(Directory("Fernando")))
-list.printList()
-
-list.addInList(Node(Directory("3Fernando")))
-list.printList()
-
-list.addInList(Node(File("3Fernando")))
-list.printList()
-
-list.removeFromList("H0l@xd01", "D")
-list.printList()
-
-print(list.searchInList("Fernando", "D").value.name)
-print(list.searchInList("3Fernando", "F").value)
-"""

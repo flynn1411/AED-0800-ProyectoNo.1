@@ -39,15 +39,23 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>Iconos/accept.svg</normaloff>Iconos/accept.svg</iconset>
+    <iconset resource="icons.qrc">
+     <normaloff>:/svgs/svg/accept.svg</normaloff>:/svgs/svg/accept.svg</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
    </property>
    <property name="flat">
     <bool>true</bool>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>CCarpeta</sender>

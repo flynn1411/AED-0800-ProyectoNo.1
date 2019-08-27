@@ -67,12 +67,14 @@ class MainPage(QDialog):
             while(current):
                 item = QListWidgetItem(current.value.name)
                 if(isinstance(current.value, Directory)):
-                    item.setIcon(QIcon(r"Nucleo/Iconos/folder.png"))
-                    print(item.icon())
+                    item.setIcon(QIcon("Nucleo/svg/directoryIcon.png"))
+                    item.setWhatsThis("Directory")
+                    #print(item.icon().hasThemeIcon(r"folder"))
                     filaCarpetas.push(Node(item))
                 
                 else:
-                    item.setIcon(QIcon(r"Nucleo/Iconos/file.png"))
+                    item.setIcon(QIcon("Nucleo/svg/fileIcon.png"))
+                    item.setWhatsThis("File")
                     filaArchivos.push(Node(item))
 
                 #self.Lista.addItem(item)
@@ -103,15 +105,20 @@ class MainPage(QDialog):
 
     def navegar(self):
         
-        valor = self.Lista.selectedItems()[0].text()     
+        valor = self.Lista.selectedItems()[0].text()
+        typeOfSelection = self.Lista.selectedItems()[0].whatsThis()
         self.Lista.clear()
+
         if(valor == ".."):
             self.back()
+
+        elif(typeOfSelection == "File"):
+            self.mostrarLista(self.padres[len(self.padres)-1].value.children.first)
 
         else:
             
             #Encontrar el nodo       
-            encontrado = self.arbol._search(valor,self.padres[len(self.padres)-1])
+            encontrado = self.arbol._search(valor,self.padres[len(self.padres)-1], "D")
 
             if(encontrado and isinstance(encontrado.value , Directory)):
                       

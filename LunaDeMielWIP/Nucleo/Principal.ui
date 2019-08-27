@@ -44,8 +44,8 @@ color: rgb(0, 0, 0);</string>
     <string/>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>Iconos/folder.svg</normaloff>Iconos/folder.svg</iconset>
+    <iconset resource="icons.qrc">
+     <normaloff>:/svgs/svg/folder.svg</normaloff>:/svgs/svg/folder.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -70,8 +70,8 @@ color: rgb(0, 0, 0);</string>
     <string/>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>Iconos/file.svg</normaloff>Iconos/file.svg</iconset>
+    <iconset resource="icons.qrc">
+     <normaloff>:/svgs/svg/file.svg</normaloff>:/svgs/svg/file.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -103,8 +103,8 @@ background-color: red;
     <string/>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>Iconos/delete.svg</normaloff>Iconos/delete.svg</iconset>
+    <iconset resource="icons.qrc">
+     <normaloff>:/svgs/svg/delete.svg</normaloff>:/svgs/svg/delete.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -117,6 +117,8 @@ background-color: red;
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

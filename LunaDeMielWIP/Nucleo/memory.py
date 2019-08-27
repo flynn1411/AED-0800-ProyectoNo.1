@@ -59,7 +59,7 @@ class MemoryHandler:
                         newParent = newParent.split("/")
                         newParent = newParent[0]
 
-                    path.append(self.tree._search(newParent, path[lastIndex]))
+                    path.append(self.tree._search(newParent, path[lastIndex], "D"))
                     #No se utiliza la variable last index en este caso porque se agrega
                     #otro elemento al arreglo, esto tambien se hace en caso que se deba
                     #recorrer mas profundamente en el arbol
