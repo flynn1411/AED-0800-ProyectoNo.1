@@ -9,15 +9,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>726</width>
-    <height>513</height>
+    <width>813</width>
+    <height>508</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QListWidget" name="ViewTreeA">
    <property name="geometry">
@@ -29,17 +29,23 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(214, 214, 214);</string>
+    <string notr="true"/>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::ExtendedSelection</enum>
    </property>
   </widget>
   <widget class="QListWidget" name="ViewTreeB">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>30</y>
+     <x>470</x>
+     <y>20</y>
      <width>311</width>
      <height>391</height>
     </rect>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::ExtendedSelection</enum>
    </property>
   </widget>
   <widget class="QPushButton" name="AddFolderA">
@@ -55,8 +61,8 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/svgs/svg/folder.svg</normaloff>:/svgs/svg/folder.svg</iconset>
+    <iconset>
+     <normaloff>svg/folder.svg</normaloff>svg/folder.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -81,8 +87,8 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/svgs/svg/file.svg</normaloff>:/svgs/svg/file.svg</iconset>
+    <iconset>
+     <normaloff>svg/file.svg</normaloff>svg/file.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -107,8 +113,8 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/svgs/svg/delete.svg</normaloff>:/svgs/svg/delete.svg</iconset>
+    <iconset>
+     <normaloff>svg/delete.svg</normaloff>svg/delete.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -123,7 +129,7 @@
   <widget class="QPushButton" name="AddFolderB">
    <property name="geometry">
     <rect>
-     <x>400</x>
+     <x>470</x>
      <y>430</y>
      <width>91</width>
      <height>71</height>
@@ -133,8 +139,8 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/svgs/svg/folder.svg</normaloff>:/svgs/svg/folder.svg</iconset>
+    <iconset>
+     <normaloff>svg/folder.svg</normaloff>svg/folder.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -149,7 +155,7 @@
   <widget class="QPushButton" name="AddFileB">
    <property name="geometry">
     <rect>
-     <x>520</x>
+     <x>600</x>
      <y>430</y>
      <width>81</width>
      <height>71</height>
@@ -159,8 +165,8 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/svgs/svg/file.svg</normaloff>:/svgs/svg/file.svg</iconset>
+    <iconset>
+     <normaloff>svg/file.svg</normaloff>svg/file.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -175,7 +181,7 @@
   <widget class="QPushButton" name="DeletB">
    <property name="geometry">
     <rect>
-     <x>630</x>
+     <x>700</x>
      <y>430</y>
      <width>81</width>
      <height>71</height>
@@ -185,8 +191,8 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/svgs/svg/delete.svg</normaloff>:/svgs/svg/delete.svg</iconset>
+    <iconset>
+     <normaloff>svg/delete.svg</normaloff>svg/delete.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -201,23 +207,23 @@
   <widget class="QPushButton" name="CopytoB">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>160</y>
-     <width>51</width>
-     <height>51</height>
+     <x>370</x>
+     <y>150</y>
+     <width>71</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/svgs/svg/left2right.svg</normaloff>:/svgs/svg/left2right.svg</iconset>
+    <iconset>
+     <normaloff>svg/left2right.svg</normaloff>svg/left2right.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
      <width>69</width>
-     <height>35</height>
+     <height>69</height>
     </size>
    </property>
    <property name="flat">
@@ -227,23 +233,23 @@
   <widget class="QPushButton" name="CopyToA">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>360</x>
      <y>230</y>
-     <width>51</width>
-     <height>51</height>
+     <width>81</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/svgs/svg/left2right.svg</normaloff>:/svgs/svg/left2right.svg</iconset>
+    <iconset>
+     <normaloff>svg/right2left.svg</normaloff>svg/right2left.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
      <width>69</width>
-     <height>35</height>
+     <height>69</height>
     </size>
    </property>
    <property name="default">

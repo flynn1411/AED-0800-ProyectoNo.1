@@ -107,6 +107,10 @@ class MainPage(QDialog):
         
         valor = self.Lista.selectedItems()[0].text()
         typeOfSelection = self.Lista.selectedItems()[0].whatsThis()
+        
+        for item in self.Lista.selectedItems():
+            print(item.text())
+            
         self.Lista.clear()
 
         if(valor == ".."):

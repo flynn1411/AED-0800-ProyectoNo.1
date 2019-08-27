@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
+  </property>
   <widget class="QTextEdit" name="FolderName">
    <property name="geometry">
     <rect>
@@ -37,13 +40,16 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>../../LunaDeMielWIP/Nucleo/Iconos/accept.svg</normaloff>../../LunaDeMielWIP/Nucleo/Iconos/accept.svg</iconset>
+     <normaloff>svg/accept.svg</normaloff>svg/accept.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
-     <width>39</width>
-     <height>25</height>
+     <width>27</width>
+     <height>27</height>
     </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

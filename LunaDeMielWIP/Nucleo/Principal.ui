@@ -30,6 +30,9 @@ background-color: rgb(255, 255, 255);</string>
     <string notr="true">font: 75 11pt &quot;San Francisco Display&quot;;
 color: rgb(0, 0, 0);</string>
    </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::ExtendedSelection</enum>
+   </property>
   </widget>
   <widget class="QPushButton" name="carpeta">
    <property name="geometry">
@@ -44,8 +47,8 @@ color: rgb(0, 0, 0);</string>
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/svgs/svg/folder.svg</normaloff>:/svgs/svg/folder.svg</iconset>
+    <iconset>
+     <normaloff>svg/folder.svg</normaloff>svg/folder.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -70,8 +73,8 @@ color: rgb(0, 0, 0);</string>
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/svgs/svg/file.svg</normaloff>:/svgs/svg/file.svg</iconset>
+    <iconset>
+     <normaloff>svg/file.svg</normaloff>svg/file.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -103,8 +106,8 @@ background-color: red;
     <string/>
    </property>
    <property name="icon">
-    <iconset resource="icons.qrc">
-     <normaloff>:/svgs/svg/delete.svg</normaloff>:/svgs/svg/delete.svg</iconset>
+    <iconset>
+     <normaloff>svg/delete.svg</normaloff>svg/delete.svg</iconset>
    </property>
    <property name="iconSize">
     <size>
