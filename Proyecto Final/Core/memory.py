@@ -28,9 +28,9 @@ class MemoryHandler:
         if(name[len(name)-1] == "/"):
             name = name.split("/")
             name = name[0]
-            return self.tree._add(name, "D", parent)
+            return self.tree._add(name , parent , "D")
         else:
-            return self.tree._add(name, "F", parent)
+            return self.tree._add(name , parent , "F")
 
 
     def loadTree(self, memoryContent):

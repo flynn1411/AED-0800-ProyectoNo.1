@@ -11,6 +11,7 @@ from Core.memory import *
 class MainPage(QDialog):
     def __init__(self):
 
+
         #Cargar la interfaz
         super(MainPage, self).__init__()
         loadUi('Core/MainInterface.ui', self)
@@ -182,7 +183,7 @@ class MainPage(QDialog):
         aFolder.exec_()
 
             #Agregar archivo al treeA
-        self.treeA._add(aFolder.word, "D", self.saveParentsA[len(self.saveParentsA)-1])
+        self.treeA._add(aFolder.word , self.saveParentsA[len(self.saveParentsA)-1] , "D")
         chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
         self.save(chain, "A")
 
@@ -209,7 +210,7 @@ class MainPage(QDialog):
         aFile.exec_()
 
             #Agregar file al treeA
-        self.treeA._add(aFile.word, "F", self.saveParentsA[len(self.saveParentsA)-1])
+        self.treeA._add(aFile.word, self.saveParentsA[len(self.saveParentsA)-1], "F")
         chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
         self.save(chain, "A")
 
@@ -229,14 +230,15 @@ class MainPage(QDialog):
             typeOfItem = item.whatsThis()
 
             if(typeOfItem == "Directory"):
-                self.treeA._delete(removeValue, parent)
+                self.treeA._delete(removeValue, parent , "D" )
             else:
                 self.treeA._delete(removeValue, parent, "F")
-
-        self.ViewTreeA.clear()
-        self.showTree(self.saveParentsA[len(self.saveParentsA)-1].value.children.first, "A")
+        
         chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
         self.save(chain, "A")
+        self.ViewTreeA.clear()
+        self.showTree(self.saveParentsA[len(self.saveParentsA)-1].value.children.first, "A")
+       
 
     def CopyAtoB(self):
 
@@ -246,20 +248,40 @@ class MainPage(QDialog):
 
             if(typeOfItem == "File"):
                 
-                #Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "F")
-                self.treeB._add(selectedValue, "F", self.saveParentsB[len(self.saveParentsB)-1])
+                Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "F")
+                self.treeB._add(Found , self.saveParentsB[len(self.saveParentsB)-1] , "F")
                 
             else:
-                #Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "D")
-                self.treeB._add(selectedValue, "D", self.saveParentsB[len(self.saveParentsB)-1])
-
-        self.ViewTreeB.clear()
-        self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
+                Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "D")
+                self.treeB._add(Found , self.saveParentsB[len(self.saveParentsB)-1] , "D")
+         
         chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
         self.save(chain, "B")        
-
-
+        self.ViewTreeB.clear()
+        self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
+       
     #treeB
+
+    def CopyBtoA(self):
+
+        for item in self.ViewTreeB.selectedItems():
+            selectedValue = item.text()
+            typeOfItem = item.whatsThis()
+
+            if(typeOfItem == "File"):
+                
+                Found = self.treeB._search(selectedValue,self.saveParentsB[len(self.saveParentsB)-1], "F")
+                self.treeA._add(Found , self.saveParentsA[len(self.saveParentsA)-1] , "F")
+                
+            else:
+                Found = self.treeB._search(selectedValue,self.saveParentsB[len(self.saveParentsB)-1], "D")
+                self.treeA._add(Found , self.saveParentsA[len(self.saveParentsA)-1] , "D")
+        
+        chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
+        self.save(chain, "A")
+        self.ViewTreeA.clear()
+        self.showTree(self.saveParentsA[len(self.saveParentsA)-1].value.children.first, "A")
+                
 
     def surfB(self):
         selectedValue = self.ViewTreeB.selectedItems()[0].text()
@@ -296,34 +318,14 @@ class MainPage(QDialog):
             typeOfItem = item.whatsThis()
 
             if(typeOfItem == "Directory"):
-                self.treeB._delete(removeValue, parent)
+                self.treeB._delete(removeValue, parent, "D")
             else:
                 self.treeB._delete(removeValue, parent, "F")
 
-        self.ViewTreeB.clear()
-        self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
         chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
         self.save(chain, "B")
-
-    def CopyBtoA(self):
-
-        for item in self.ViewTreeB.selectedItems():
-            selectedValue = item.text()
-            typeOfItem = item.whatsThis()
-
-            if(typeOfItem == "File"):
-                
-                #Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "F")
-                self.treeA._add(selectedValue, "F", self.saveParentsA[len(self.saveParentsA)-1])
-                
-            else:
-                #Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "D")
-                self.treeA._add(selectedValue, "D", self.saveParentsA[len(self.saveParentsA)-1])
-
-        self.ViewTreeA.clear()
-        self.showTree(self.saveParentsA[len(self.saveParentsA)-1].value.children.first, "A")
-        chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
-        self.save(chain, "A")        
+        self.ViewTreeB.clear()
+        self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
         
 
     def folderWindowB(self):
@@ -338,7 +340,7 @@ class MainPage(QDialog):
         bFolder.exec_()
 
             #Agregar archivo al treeA
-        self.treeB._add(bFolder.word, "D", self.saveParentsB[len(self.saveParentsB)-1])
+        self.treeB._add(bFolder.word , self.saveParentsB[len(self.saveParentsB)-1] , "D")
         chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
         self.save(chain, "B")
 
@@ -365,7 +367,7 @@ class MainPage(QDialog):
         bFile.exec_()
 
             #Agregar file al treeA
-        self.treeB._add(bFile.word, "F", self.saveParentsB[len(self.saveParentsB)-1])
+        self.treeB._add(bFile.word , self.saveParentsB[len(self.saveParentsB)-1] , "F")
         chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
         self.save(chain, "B")
 
