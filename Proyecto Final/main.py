@@ -99,12 +99,17 @@ class MainPage(QDialog):
             while(current):
                 item = QListWidgetItem(current.value.name)
                 if(isinstance(current.value, Directory)):
-                    item.setIcon(QIcon("Core/svg/blackDirectory.png"))
+                    if(current.value.children.first):
+                        item.setIcon(QIcon("Core/svg/directoryWithChildren.png"))
+
+                    else:
+                        item.setIcon(QIcon("Core/svg/emptyDirectory.png"))
+
                     item.setWhatsThis("Directory")
                     directoryQueue.push(Node(item))
                 
                 else:
-                    item.setIcon(QIcon("Core/svg/fileIcon.png"))
+                    self.setFileIcon(item)
                     item.setWhatsThis("File")
                     fileQueue.push(Node(item))
 
@@ -122,7 +127,41 @@ class MainPage(QDialog):
 
         else:
             array.append("..")
-            listView.addItems(array)    
+            listView.addItems(array)
+
+    def setFileIcon(self, item):
+        if(item.text().count(".mp3") > 0):
+            item.setIcon(QIcon("Core/svg/mp3.png"))
+            
+        elif(item.text().count(".mp4") > 0):
+            item.setIcon(QIcon("Core/svg/mp4.png"))
+
+        elif(item.text().count(".txt") > 0):
+            item.setIcon(QIcon("Core/svg/txt.png"))
+        
+        elif(item.text().count(".cpp") > 0):
+            item.setIcon(QIcon("Core/svg/cpp.png"))
+        
+        elif(item.text().count(".html") > 0):
+            item.setIcon(QIcon("Core/svg/html.png"))
+
+        elif(item.text().count(".py") > 0):
+            item.setIcon(QIcon("Core/svg/py.png"))
+        
+        elif(item.text().count(".jar") > 0):
+            item.setIcon(QIcon("Core/svg/jar.png"))
+
+        elif(item.text().count(".js") > 0):
+            item.setIcon(QIcon("Core/svg/javascript.png"))
+
+        elif(item.text().count(".json") > 0):
+            item.setIcon(QIcon("Core/svg/json.png"))
+
+        elif(item.text().count(".psd") > 0):
+            item.setIcon(QIcon("Core/svg/psd.png"))
+
+        else:
+            item.setIcon(QIcon("Core/svg/fileIcon.png"))
 
     def surfA(self):
         selectedValue = self.ViewTreeA.selectedItems()[0].text()
