@@ -58,9 +58,14 @@ class MainPage(QDialog):
         self.DeletB.clicked.connect(self.DeleteB)
         self.CopyToA.clicked.connect(self.CopyBtoA)
 
+            #Cerrar el programa 
+        self.close.clicked.connect(self.quit)
 
 
-    # Todas las Funciones de la Interfaz    
+
+    # Todas las Funciones de la Interfaz    .
+    def quit(self):
+        quit()
     
     def save(self,chain, tree):
         fileName = ""
@@ -222,9 +227,13 @@ class MainPage(QDialog):
         aFolder.exec_()
 
             #Agregar archivo al treeA
-        self.treeA._add(aFolder.word , self.saveParentsA[len(self.saveParentsA)-1] , "D")
-        chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
-        self.save(chain, "A")
+
+        if(self.validateInput(aFolder.word)):
+            self.treeA._add(aFolder.word , self.saveParentsA[len(self.saveParentsA)-1] , "D")
+            chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
+            self.save(chain, "A")
+        else:
+            print("Error")
 
             #Mostrar el treeA
         self.ViewTreeA.clear()
@@ -249,9 +258,13 @@ class MainPage(QDialog):
         aFile.exec_()
 
             #Agregar file al treeA
-        self.treeA._add(aFile.word, self.saveParentsA[len(self.saveParentsA)-1], "F")
-        chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
-        self.save(chain, "A")
+        self.validateInput(aFile.word) 
+        if(self.validateInput):   
+            self.treeA._add(aFile.word, self.saveParentsA[len(self.saveParentsA)-1], "F")
+            chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
+            self.save(chain, "A")
+        else:
+            pass
 
             #Mostrar hijos
         self.ViewTreeA.clear()
@@ -379,9 +392,13 @@ class MainPage(QDialog):
         bFolder.exec_()
 
             #Agregar archivo al treeA
-        self.treeB._add(bFolder.word , self.saveParentsB[len(self.saveParentsB)-1] , "D")
-        chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
-        self.save(chain, "B")
+        self.validateInput(bFolder.word)
+        if(self.validateInput):
+            self.treeB._add(bFolder.word , self.saveParentsB[len(self.saveParentsB)-1] , "D")
+            chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
+            self.save(chain, "B")
+        else:
+            pass
 
             #Mostrar el treeB
         self.ViewTreeB.clear()
@@ -406,9 +423,15 @@ class MainPage(QDialog):
         bFile.exec_()
 
             #Agregar file al treeA
-        self.treeB._add(bFile.word , self.saveParentsB[len(self.saveParentsB)-1] , "F")
-        chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
-        self.save(chain, "B")
+        
+        self.validateInput(bFile.word) 
+
+        if(self.validateInput):
+            self.treeB._add(bFile.word , self.saveParentsB[len(self.saveParentsB)-1] , "F")
+            chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
+            self.save(chain, "B")
+        else:
+            pass
 
             #Mostrar hijos
         self.ViewTreeB.clear()
@@ -417,6 +440,18 @@ class MainPage(QDialog):
 
         else:
             self.showTree(self.treeB.root.value.children.first, "B")
+
+
+    def validateInput(self, inputValue):
+        invalidCharacters = "/:*¡!¿?<>|"
+
+        nameIsValid = True
+        for i in range(len(invalidCharacters)-1):
+            if(inputValue.count(invalidCharacters[i])):
+                nameIsValid = False
+                break
+
+        return nameIsValid
 
 
 
