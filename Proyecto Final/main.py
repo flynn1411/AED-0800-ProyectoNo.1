@@ -301,12 +301,20 @@ class MainPage(QDialog):
             if(typeOfItem == "File"):
                 
                 Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "F")
-                self.treeB._add(Found , self.saveParentsB[len(self.saveParentsB)-1] , "F")
+                if (Found):
+                    self.treeB._add(Found , self.saveParentsB[len(self.saveParentsB)-1] , "F")
+
+                else:
+                    pass
                 
             else:
                 Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "D")
-                self.treeB._add(Found , self.saveParentsB[len(self.saveParentsB)-1] , "D")
-         
+                if (Found):
+                    self.treeB._add(Found , self.saveParentsB[len(self.saveParentsB)-1] , "D")
+
+                else:
+                    pass
+
         chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
         self.save(chain, "B")        
         self.ViewTreeB.clear()
@@ -323,11 +331,19 @@ class MainPage(QDialog):
             if(typeOfItem == "File"):
                 
                 Found = self.treeB._search(selectedValue,self.saveParentsB[len(self.saveParentsB)-1], "F")
-                self.treeA._add(Found , self.saveParentsA[len(self.saveParentsA)-1] , "F")
+                if (Found):
+                    self.treeA._add(Found , self.saveParentsA[len(self.saveParentsA)-1] , "F")
+
+                else:
+                    pass
                 
             else:
                 Found = self.treeB._search(selectedValue,self.saveParentsB[len(self.saveParentsB)-1], "D")
-                self.treeA._add(Found , self.saveParentsA[len(self.saveParentsA)-1] , "D")
+                if (Found):
+                    self.treeA._add(Found , self.saveParentsA[len(self.saveParentsA)-1] , "D")
+
+                else:
+                    pass
         
         chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
         self.save(chain, "A")
