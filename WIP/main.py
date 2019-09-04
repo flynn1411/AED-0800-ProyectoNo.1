@@ -168,20 +168,6 @@ class MainPage(QDialog):
         else:
             item.setIcon(QIcon("Core/svg/fileIcon.png"))
 
-    def sendParameters(self, tree, function):
-        if(tree == "A"):
-            currentTree = self.treeA
-            currentTreePath = self.saveParentsA
-            currentTreeView = self.ViewTreeA
-
-        else:
-            currentTree = self.treeB
-            currentTreePath = self.saveParentsB
-            currentTreeView = self.ViewTreeB
-
-        if(function == "addFolder"):
-            pass
-
     def surf(self, tree):
         if(tree == "A"):
             currentTree = self.treeA
@@ -240,6 +226,15 @@ class MainPage(QDialog):
     
 
     def folderWindow(self, tree):
+        if(tree == "A"):
+            currentTree = self.treeA
+            currentTreePath = self.saveParentsA
+            currentTreeView = self.ViewTreeA
+
+        else:
+            currentTree = self.treeB
+            currentTreePath = self.saveParentsB
+            currentTreeView = self.ViewTreeB
             #Importar
         from Core.DirectoryDialog import DirectoryDialog
         folderPrompt = DirectoryDialog()
@@ -250,15 +245,7 @@ class MainPage(QDialog):
             #Finalizar sin Cerrar
         folderPrompt.exec_()
 
-        if(tree == "A"):
-            currentTree = self.treeA
-            currentTreePath = self.saveParentsA
-            currentTreeView = self.ViewTreeA
-
-        else:
-            currentTree = self.treeB
-            currentTreePath = self.saveParentsB
-            currentTreeView = self.ViewTreeB
+        
 
             #Agregar archivo al arbol actual
 
@@ -407,9 +394,6 @@ class MainPage(QDialog):
                     break
 
         return nameIsValid
-
-
-
 
 
 app=QApplication(sys.argv)

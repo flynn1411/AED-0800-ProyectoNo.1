@@ -227,13 +227,12 @@ class MainPage(QDialog):
         aFolder.exec_()
 
             #Agregar archivo al treeA
-
         if(self.validateInput(aFolder.word)):
             self.treeA._add(aFolder.word , self.saveParentsA[len(self.saveParentsA)-1] , "D")
             chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
             self.save(chain, "A")
         else:
-            print("Error")
+            print("Error: El nombre ingresado no es permitido.")
 
             #Mostrar el treeA
         self.ViewTreeA.clear()
@@ -257,14 +256,13 @@ class MainPage(QDialog):
             #Finalizar sin cerrar  
         aFile.exec_()
 
-            #Agregar file al treeA
-        self.validateInput(aFile.word) 
-        if(self.validateInput):   
+            #Agregar file al treeA 
+        if(self.validateInput(aFile.word)):   
             self.treeA._add(aFile.word, self.saveParentsA[len(self.saveParentsA)-1], "F")
             chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
             self.save(chain, "A")
         else:
-            pass
+            print("Error: El nombre ingresado no es permitido.")
 
             #Mostrar hijos
         self.ViewTreeA.clear()
@@ -305,7 +303,7 @@ class MainPage(QDialog):
                     self.treeB._add(Found , self.saveParentsB[len(self.saveParentsB)-1] , "F")
 
                 else:
-                    pass
+                    break
                 
             else:
                 Found = self.treeA._search(selectedValue,self.saveParentsA[len(self.saveParentsA)-1], "D")
@@ -313,7 +311,7 @@ class MainPage(QDialog):
                     self.treeB._add(Found , self.saveParentsB[len(self.saveParentsB)-1] , "D")
 
                 else:
-                    pass
+                    break
 
         chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
         self.save(chain, "B")        
@@ -335,7 +333,7 @@ class MainPage(QDialog):
                     self.treeA._add(Found , self.saveParentsA[len(self.saveParentsA)-1] , "F")
 
                 else:
-                    pass
+                    break
                 
             else:
                 Found = self.treeB._search(selectedValue,self.saveParentsB[len(self.saveParentsB)-1], "D")
@@ -343,7 +341,7 @@ class MainPage(QDialog):
                     self.treeA._add(Found , self.saveParentsA[len(self.saveParentsA)-1] , "D")
 
                 else:
-                    pass
+                    break
         
         chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
         self.save(chain, "A")
@@ -408,13 +406,12 @@ class MainPage(QDialog):
         bFolder.exec_()
 
             #Agregar archivo al treeA
-        self.validateInput(bFolder.word)
-        if(self.validateInput):
+        if(self.validateInput(bFolder.word)):
             self.treeB._add(bFolder.word , self.saveParentsB[len(self.saveParentsB)-1] , "D")
             chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
             self.save(chain, "B")
         else:
-            pass
+            print("Error: El nombre ingresado no es permitido.")
 
             #Mostrar el treeB
         self.ViewTreeB.clear()
@@ -439,15 +436,12 @@ class MainPage(QDialog):
         bFile.exec_()
 
             #Agregar file al treeA
-        
-        self.validateInput(bFile.word) 
-
-        if(self.validateInput):
+        if(self.validateInput(bFile.word)):
             self.treeB._add(bFile.word , self.saveParentsB[len(self.saveParentsB)-1] , "F")
             chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
             self.save(chain, "B")
         else:
-            pass
+            print("Error: El nombre ingresado no es permitido.")
 
             #Mostrar hijos
         self.ViewTreeB.clear()
@@ -459,19 +453,20 @@ class MainPage(QDialog):
 
 
     def validateInput(self, inputValue):
-        invalidCharacters = "/:*¡!¿?<>|"
-
         nameIsValid = True
-        for i in range(len(invalidCharacters)-1):
-            if(inputValue.count(invalidCharacters[i])):
-                nameIsValid = False
-                break
+
+        if(inputValue == "" or inputValue == " "):
+            nameIsValid = False
+
+        else:
+            invalidCharacters = " /:*¡!¿?<>|"
+
+            for i in range(len(invalidCharacters)-1):
+                if(inputValue.count(invalidCharacters[i])):
+                    nameIsValid = False
+                    break
 
         return nameIsValid
-
-
-
-
 
 app=QApplication(sys.argv)
 widget=MainPage()
