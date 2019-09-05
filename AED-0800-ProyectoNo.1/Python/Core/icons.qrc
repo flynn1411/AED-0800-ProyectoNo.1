@@ -1,0 +1,16 @@
+<RCC>
+  <qresource prefix="svgs">
+    <file>svg/app_finder_bright_icon.pgm</file>
+    <file>svg/directoryIcon.png</file>
+    <file>svg/fileIcon.png</file>
+    <file>svg/accept.svg</file>
+    <file>svg/close.svg</file>
+    <file>svg/delete.svg</file>
+    <file>svg/file.svg</file>
+    <file>svg/folder.svg</file>
+    <file>svg/help.svg</file>
+    <file>svg/left2right.svg</file>
+    <file>svg/right2left.svg</file>
+    <file>svg/right2left.svg</file>
+  </qresource>
+</RCC>
