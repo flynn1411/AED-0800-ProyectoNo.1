@@ -1,13 +1,15 @@
-ar.txt
-carpeta1/
-	rsgs.psd
-carpeta2/
-	algo
-	dhdfgd
-	rsgs.psd
-heap.py
-main.cpp
-piratesOfTheCarribean.mp3
-shrek5.mp4
-Proyecto1/
-TLauncher.jar
+f/
+	c/
+	v/
+hola/
+	.html
+	art.txt
+	asd.mp3
+	c/
+		.html
+		art.txt
+		asd.mp3
+		ll.mp4
+	v/
+		.html
+		ll.mp4

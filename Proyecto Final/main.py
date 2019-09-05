@@ -63,11 +63,14 @@ class MainPage(QDialog):
 
 
 
-    # Todas las Funciones de la Interfaz    .
+    # Todas las Funciones de la Interfaz  
+
     def quit(self):
         quit()
     
+    
     def save(self,chain, tree):
+        
         fileName = ""
 
         if(tree == "A"):
@@ -78,7 +81,6 @@ class MainPage(QDialog):
         file = open(fileName,"w")
         file.write(chain)
         file.close()
-
 
 
     def showTree(self,current, tree):
@@ -168,6 +170,43 @@ class MainPage(QDialog):
         else:
             item.setIcon(QIcon("Core/svg/fileIcon.png"))
 
+    def back(self, tree):
+
+        if(tree == "A"):
+            listView = self.ViewTreeA
+            currentParents = self.saveParentsA
+        else:
+            listView = self.ViewTreeB
+            currentParents = self.saveParentsB
+
+        listView.clear()
+
+        if(len(currentParents) > 1):
+           
+            currentParents.pop(len(currentParents)-1)
+            goBack = currentParents[len(currentParents)-1]
+            dad = goBack.value.children.first
+            self.showTree(dad, tree)
+
+    def validateInput(self, inputValue):
+        nameIsValid = True
+
+        if(inputValue == "" or inputValue == " "):
+            nameIsValid = False
+
+        else:
+            invalidCharacters = " /:*¡!¿?<>|"
+
+            for i in range(len(invalidCharacters)-1):
+                if(inputValue.count(invalidCharacters[i])):
+                    nameIsValid = False
+                    break
+
+        return nameIsValid
+
+    
+    # Funciones para el treeA
+
     def surfA(self):
         selectedValue = self.ViewTreeA.selectedItems()[0].text()
         typeOfSelection = self.ViewTreeA.selectedItems()[0].whatsThis()
@@ -195,29 +234,11 @@ class MainPage(QDialog):
 
             else:
                 self.showTree(self.saveParentsA[len(self.saveParentsA)-1].value.children.first, "A")
-
-    def back(self, tree):
-
-        if(tree == "A"):
-            listView = self.ViewTreeA
-            currentParents = self.saveParentsA
-        else:
-            listView = self.ViewTreeB
-            currentParents = self.saveParentsB
-
-        listView.clear()
-
-        if(len(currentParents) > 1):
-           
-            currentParents.pop(len(currentParents)-1)
-            goBack = currentParents[len(currentParents)-1]
-            dad = goBack.value.children.first
-            self.showTree(dad, tree)
     
-
     def folderWindowA(self):
             #Importar
         from Core.DirectoryDialog import DirectoryDialog
+        
         aFolder = DirectoryDialog()
 
             #Accion de botones 
@@ -318,36 +339,7 @@ class MainPage(QDialog):
         self.ViewTreeB.clear()
         self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
        
-    #treeB
-
-    def CopyBtoA(self):
-
-        for item in self.ViewTreeB.selectedItems():
-            selectedValue = item.text()
-            typeOfItem = item.whatsThis()
-
-            if(typeOfItem == "File"):
-                
-                Found = self.treeB._search(selectedValue,self.saveParentsB[len(self.saveParentsB)-1], "F")
-                if (Found):
-                    self.treeA._add(Found , self.saveParentsA[len(self.saveParentsA)-1] , "F")
-
-                else:
-                    break
-                
-            else:
-                Found = self.treeB._search(selectedValue,self.saveParentsB[len(self.saveParentsB)-1], "D")
-                if (Found):
-                    self.treeA._add(Found , self.saveParentsA[len(self.saveParentsA)-1] , "D")
-
-                else:
-                    break
-        
-        chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
-        self.save(chain, "A")
-        self.ViewTreeA.clear()
-        self.showTree(self.saveParentsA[len(self.saveParentsA)-1].value.children.first, "A")
-                
+    # Funciones para el treeB
 
     def surfB(self):
         selectedValue = self.ViewTreeB.selectedItems()[0].text()
@@ -376,23 +368,6 @@ class MainPage(QDialog):
 
             else:
                 self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
-
-    def DeleteB(self):
-        parent = self.saveParentsB[len(self.saveParentsB)-1]
-        for item in self.ViewTreeB.selectedItems():
-            removeValue = item.text()
-            typeOfItem = item.whatsThis()
-
-            if(typeOfItem == "Directory"):
-                self.treeB._delete(removeValue, parent, "D")
-            else:
-                self.treeB._delete(removeValue, parent, "F")
-
-        chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
-        self.save(chain, "B")
-        self.ViewTreeB.clear()
-        self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")
-        
 
     def folderWindowB(self):
             #Importar
@@ -451,22 +426,49 @@ class MainPage(QDialog):
         else:
             self.showTree(self.treeB.root.value.children.first, "B")
 
+    def DeleteB(self):
+        parent = self.saveParentsB[len(self.saveParentsB)-1]
+        for item in self.ViewTreeB.selectedItems():
+            removeValue = item.text()
+            typeOfItem = item.whatsThis()
 
-    def validateInput(self, inputValue):
-        nameIsValid = True
+            if(typeOfItem == "Directory"):
+                self.treeB._delete(removeValue, parent, "D")
+            else:
+                self.treeB._delete(removeValue, parent, "F")
 
-        if(inputValue == "" or inputValue == " "):
-            nameIsValid = False
+        chain = self.memoryHandler.saveTree(self.treeB.root.value.children.first)
+        self.save(chain, "B")
+        self.ViewTreeB.clear()
+        self.showTree(self.saveParentsB[len(self.saveParentsB)-1].value.children.first, "B")        
 
-        else:
-            invalidCharacters = " /:*¡!¿?<>|"
+    def CopyBtoA(self):
 
-            for i in range(len(invalidCharacters)-1):
-                if(inputValue.count(invalidCharacters[i])):
-                    nameIsValid = False
+        for item in self.ViewTreeB.selectedItems():
+            selectedValue = item.text()
+            typeOfItem = item.whatsThis()
+
+            if(typeOfItem == "File"):
+                
+                Found = self.treeB._search(selectedValue,self.saveParentsB[len(self.saveParentsB)-1], "F")
+                if (Found):
+                    self.treeA._add(Found , self.saveParentsA[len(self.saveParentsA)-1] , "F")
+
+                else:
                     break
+                
+            else:
+                Found = self.treeB._search(selectedValue,self.saveParentsB[len(self.saveParentsB)-1], "D")
+                if (Found):
+                    self.treeA._add(Found , self.saveParentsA[len(self.saveParentsA)-1] , "D")
 
-        return nameIsValid
+                else:
+                    break
+        
+        chain = self.memoryHandler.saveTree(self.treeA.root.value.children.first)
+        self.save(chain, "A")
+        self.ViewTreeA.clear()
+        self.showTree(self.saveParentsA[len(self.saveParentsA)-1].value.children.first, "A")
 
 app=QApplication(sys.argv)
 widget=MainPage()
