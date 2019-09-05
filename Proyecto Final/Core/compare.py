@@ -34,11 +34,8 @@ class Compare:
         if(lesser == self.compareGreaterLength(str1, str2)):
             return 0
 
-        elif(len(str1) == len(str2)):
+        elif(len(str1) == self.compareLesserLength(str1,str2)):
             return -1
 
         else:
             return 1
-
-
-compare = Compare()
